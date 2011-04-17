@@ -44,6 +44,7 @@
   }
 
   function W() {
+    if(W.disabled) return;
     i = "<table>";
     for (u = 18; u < 98; document.body.innerHTML = i += ++u % x - 9 ? "<th width=60 height=60 onclick='toledoChess.pI(" + u + ")&8?toledoChess.W():toledoChess.X(0,0,toledoChess.y(),1)'style='font-size:50px'bgcolor=#" + (u - B ? u * .9 & 1 || 9 : "d") + "0f0e0>&#" + (I[u] & 15 ? 9808 + l[67 + (I[u] & 15)] : 160) + ";" : u++ && "<tr>") B = b
   }
