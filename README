@@ -2,3 +2,11 @@ Unobtrusive, indented fork of Toledo Javascript Chess (aka 1k Chess).
 
 Working example is at http://azer.github.com/toledo-chess
 Oscar Toledo's Homepage: http://nanochess.110mb.com
+
+04.17 Update
+============
+makeMove method added. example usage;
+    
+    > toledoChess.makeMove('a2','a4',function(aiCounter){
+        console.log(aiCounter.from, aiCounter.to);
+      });
