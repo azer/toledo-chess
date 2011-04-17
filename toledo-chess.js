@@ -1,4 +1,4 @@
-(function toledoChess(exports){
+(function toledoChess(exports,undefined){
 
   var B, I,
       b, i, l, u, x, y, z;
@@ -21,14 +21,20 @@
             if (S > h || 1 < S & S == h && L > 2 | d) {
               I[T] = n, I[g] = I[D], I[O] = D ? I[D] = 0 : 0;
               L -= X(c, h + 1, E = G | A > 1 ? 0 : T, S, L - N);
-              if (!(h || S - 1 | B - O | T - b | L < -1e4)) return W(y = E), c && setTimeout("toledoChess.X(8,0,toledoChess.y(),2),toledoChess.X(8,0,toledoChess.y(),1)", 75);
-                E = 1 - G | A < 7 | D | !S | R | o < z || X(c, 0) > 1e4;
-                I[O] = o;
-                I[T] = R;
-                I[D] = I[g];
-                D ? I[g] = G ? 0 : 9 ^ c : 0
+              
+              if (!(h || S - 1 | B - O | T - b | L < -1e4)){ 
+                exports.makeMove.callback && ( exports.makeMove.callback(O,T), ( exports.makeMove.callback = undefined ) );
+                W(y = E);
+                return c && setTimeout("toledoChess.X(8,0,toledoChess.y(),2),toledoChess.X(8,0,toledoChess.y(),1)", 75);
               }
-              if (L > N || !h & L == N && Math.random() < .5) if (N = L, S > 1) if (h ? s - L < 0 : (B = O, b = T, 0)) return N
+
+              E = 1 - G | A < 7 | D | !S | R | o < z || X(c, 0) > 1e4;
+              I[O] = o;
+              I[T] = R;
+              I[D] = I[g];
+              D ? I[g] = G ? 0 : 9 ^ c : 0
+            }
+            if (L > N || !h & L == N && Math.random() < .5) if (N = L, S > 1) if (h ? s - L < 0 : (B = O, b = T, 0)) return N
           }
         }
       } while (!R & G > 2 || (T = O, G | A > 2 | z < o & !R && ++C * --A))
@@ -39,19 +45,62 @@
 
   function W() {
     i = "<table>";
-    for (u = 18; u < 98; document.body.innerHTML = i += ++u % x - 9 ? "<th width=60 height=60 onclick='toledoChess.I(" + u + ")&8?toledoChess.W():toledoChess.X(0,0,toledoChess.y(),1)'style='font-size:50px'bgcolor=#" + (u - B ? u * .9 & 1 || 9 : "d") + "0f0e0>&#" + (I[u] & 15 ? 9808 + l[67 + (I[u] & 15)] : 160) + ";" : u++ && "<tr>") B = b
+    for (u = 18; u < 98; document.body.innerHTML = i += ++u % x - 9 ? "<th width=60 height=60 onclick='toledoChess.pI(" + u + ")&8?toledoChess.W():toledoChess.X(0,0,toledoChess.y(),1)'style='font-size:50px'bgcolor=#" + (u - B ? u * .9 & 1 || 9 : "d") + "0f0e0>&#" + (I[u] & 15 ? 9808 + l[67 + (I[u] & 15)] : 160) + ";" : u++ && "<tr>") B = b
   }
 
   exports.X = X;
   exports.W = W;
 
-  exports.I = function(nb){
-    b = nb;
+  exports.I = function(){
+    return I;
+  }
+
+  exports.pI = function(nb){
+    nb != undefined && ( b = nb );
     return I[b];
   };
 
   exports.y = function(){
     return y;
   }
+
+  exports.makeMove = (function(){
+    var files = { 'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8 },
+        callback;
+
+    function _(from, to, callback){
+      var a = toLoc(from),
+          b = toLoc(to);
+
+      exports.pI(toLoc(from)); 
+      W();
+
+      setTimeout(function(){
+        callback && ( _.callback = function(from,to){
+          callback({ 'from':toSAN(from), 'to':toSAN(to) });
+        });
+      },0);
+
+      exports.pI(toLoc(to)); 
+      X(0,0,y,1);
+    }
+
+    function toLoc(san){
+      var s = san.length == 3 && 1 || 0,
+          f = san.charCodeAt(s)-96,
+          r = 10-parseInt(san.substring(s+1,s+2));
+
+      return r + '' + f;
+    }
+
+    function toSAN(loc){
+      var r = 10-Math.floor(loc / 10),
+          f = String.fromCharCode((loc % 10)+96);
+
+      return f+r;
+    }
+
+    return _;
+  })();
 
 })(toledoChess = {});
