@@ -1,3 +1,4 @@
+// Javascript chess engine (c)2011 Oscar Toledo G.
 var toledoChess = (function(exports,undefined){
 
   var B, I,
@@ -25,7 +26,7 @@ var toledoChess = (function(exports,undefined){
               if (!(h || S - 1 | B - O | T - b | L < -1e4)){ 
                 exports.makeMove.callback && ( exports.makeMove.callback(O,T), ( exports.makeMove.callback = undefined ) );
                 W(y = E);
-                return c && setTimeout("toledoChess.X(8,0,toledoChess.y(),2),toledoChess.X(8,0,toledoChess.y(),1)", 75);
+                return c && setTimeout(function(){ toledoChess.X(8,0,toledoChess.y(),2),toledoChess.X(8,0,toledoChess.y(),1) }, 75);
               }
 
               E = 1 - G | A < 7 | D | !S | R | o < z || X(c, 0) > 1e4;
