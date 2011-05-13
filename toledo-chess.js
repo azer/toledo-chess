@@ -1,12 +1,7 @@
 // Javascript chess engine (c)2011 Oscar Toledo G.
 var toledoChess = (function(exports,undefined){
 
-  var B, i, y, u, b, I = [],
-      G = 120,
-      x = 10,
-      z = 15,
-      M = 1e4,
-      l = [5, 3, 4, 6, 2, 4, 3, 5, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 9, 9, 13, 11, 12, 14, 10, 12, 11, 13, 0, 99, 0, 306, 297, 495, 846, -1, 0, 1, 2, 2, 1, 0, -1, -1, 1, -10, 10, -11, -9, 9, 11, 10, 20, -9, -11, -10, -20, -21, -19, -12, -8, 8, 12, 19, 21];
+  var B, i, y, u, b, I, G, x, z, M, l;
 
   function X(w, c, h, e, S, s) {
     var t, o, L, E, d, O = e,
@@ -91,8 +86,6 @@ var toledoChess = (function(exports,undefined){
       style.borderColor = p == B ? "red" : "#e0e0f0";
     }
   }
-  O();
-  W();
 
   function Y(s) {
     i = (I[s] ^ y) & z;
@@ -154,6 +147,24 @@ var toledoChess = (function(exports,undefined){
   exports.X = X;
   exports.Y = Y;
   exports.W = W;
+
+  exports.init = function(){
+    
+    if(!W.disabled && document.body){
+      document.body.innerHTML = '';
+    }
+
+    B, i, y, u, b, I = [];
+
+    G = 120;
+    x = 10;
+    z = 15;
+    M = 1e4;
+    l = [5, 3, 4, 6, 2, 4, 3, 5, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 9, 9, 13, 11, 12, 14, 10, 12, 11, 13, 0, 99, 0, 306, 297, 495, 846, -1, 0, 1, 2, 2, 1, 0, -1, -1, 1, -10, 10, -11, -9, 9, 11, 10, 20, -9, -11, -10, -20, -21, -19, -12, -8, 8, 12, 19, 21];
+
+    O();
+    W();
+  }
 
   return exports;
 
