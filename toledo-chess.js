@@ -40,7 +40,7 @@ var toledoChess = (function(exports,undefined){
                     I[p] = n, I[O] = m ? (I[g] = I[m], I[m] = 0) : g ? I[g] = 0 : 0;
                     L -= X(s > h | d ? 0 : p, L - N, h + 1, I[G + 1], J = q | A > 1 ? 0 : p, s);
                     if (!(h || s - 1 | B - O | i - n | p - b | L < -M)){ 
-                      exports.makeMove.callback && ( exports.makeMove.callback(O,p) );
+                      exports.makeMove.callback && ( exports.makeMove.callback(O,p), ( exports.makeMove.callback = undefined ) );
                       return W(), G--, u = J;
                     }
                     J = q - 1 | A < 7 || m || !s | d | r | o < z || X(0, 0, 0, 21, 0, 0) > M;
@@ -74,18 +74,22 @@ var toledoChess = (function(exports,undefined){
     for (var a = "<table cellspacing=0 align=center border=0>", B = 0; B < 8; B++)
     for (a += "<tr>", i = 21; i < 29; i++) a += "<td width=40 height=40 onclick=toledoChess.Y(" + (B * x + i) + ") id=o" + (B * x + i) + " style='border:2px solid #e0e0f0' bgcolor=#" + (i + B & 1 ? "f0f" : "c0c") + "0f0 align=center>";
     a += "<tr><td colspan=8 align=center><select id=t><option>Q<option>R<option>B";
-    //document.write(a + "<option>N</select></table>");
+    !W.disabled && document.write(a + "<option>N</select></table>");
   }
 
   function W() {
     B = b;
-    /*
+
+    if(W.disabled){
+      return;
+    }
+
     for (var p = 21; p < 99; p += p % x - 8 ? 1 : 3) {
       document.getElementById("o" + p).
       innerHTML = "\xa0pknbrq  PKNBRQ".charAt(I[p] & z);
       document.getElementById("o" + p).
       style.borderColor = p == B ? "red" : "#e0e0f0";
-    }*/
+    }
   }
   O();
   W();
@@ -149,6 +153,7 @@ var toledoChess = (function(exports,undefined){
 
   exports.X = X;
   exports.Y = Y;
+  exports.W = W;
 
   return exports;
 
