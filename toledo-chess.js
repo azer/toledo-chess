@@ -95,7 +95,7 @@ var toledoChess = (function(exports,undefined){
     } else if (B && i < 9) {
       b = s;
       i = I[B] & z;
-      if ((i & 7) == 1 & (b < 29 | b > 90)) i = 14 - document.getElementById("t").selectedIndex ^ y;
+      if ((i & 7) == 1 & (b < 29 | b > 90)) i = 14 - 0 ^ y;
       X(0, 0, 0, 21, u, 1);
       if (y){ 
         setTimeout(function(){
